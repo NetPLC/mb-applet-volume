@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Volume control
+Comment=Panel based Volume control
+Exec=mb-applet-volume
+Type=PanelApp
+Icon=mbvol-high.png
+Categories=Panel;Utility;MB

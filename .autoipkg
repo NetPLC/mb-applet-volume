@@ -1,0 +1,4 @@
+SOURCE=svn://www.sidske.com:8080/mb-applet-volume
+DEPS="libmb1, libgtk2.0-0"
+DESC="A matchbox panel volume control"
+INTERACTIVE=n
