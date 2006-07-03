@@ -325,7 +325,7 @@ popup_init(MBTrayApp *app)
 
   g_signal_connect (G_OBJECT (adj), "value-changed", 
 		    G_CALLBACK (popup_vol_changed_cb), (gpointer)app);
-  
+
   gtk_container_add (GTK_CONTAINER (slider_window), slider);
 
   /*
@@ -337,6 +337,7 @@ popup_init(MBTrayApp *app)
   gtk_widget_add_events (slider_window, GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK);
 
 
+#if 0
   /*
   gtk_window_set_decorated (GTK_WINDOW(slider_window), FALSE);
 
@@ -379,7 +380,8 @@ popup_init(MBTrayApp *app)
 
   g_signal_connect (G_OBJECT (button_ok), "clicked", 
 		    G_CALLBACK (popup_close), NULL);
-
+#endif
+  
   gtk_widget_realize (slider_window);
 }
 
