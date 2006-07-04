@@ -206,6 +206,7 @@ slider_clicked (GtkWidget *w, GdkEventButton *ev)
   gdk_pointer_ungrab (ev->time);
 
   gtk_widget_hide (slider_window);
+  PopupIsMapped = False;
 }
 
 
@@ -216,6 +217,16 @@ button_callback (MBTrayApp *app, int cx, int cy, Bool is_released)
   int x, y, win_w, win_h;
 
   if (!is_released) return;
+
+  if (PopupIsMapped)
+    {
+      gdk_pointer_ungrab (gtk_get_current_event_time ());
+
+      gtk_widget_hide (slider_window);
+      PopupIsMapped = False;
+
+      return;
+    }
 
   mb_tray_app_get_absolute_coords (app, &x, &y);
 
@@ -323,8 +334,8 @@ popup_init(MBTrayApp *app)
 
   adj = gtk_range_get_adjustment (GTK_RANGE (slider)); 
 
-  g_signal_connect (G_OBJECT (adj), "value-changed", 
-		    G_CALLBACK (popup_vol_changed_cb), (gpointer)app);
+  g_signal_connect (adj, "value-changed", 
+		    G_CALLBACK (popup_vol_changed_cb), app);
 
   gtk_container_add (GTK_CONTAINER (slider_window), slider);
 
@@ -332,9 +343,11 @@ popup_init(MBTrayApp *app)
   g_signal_connect (G_OBJECT (window), "button-press-event", G_CALLBACK (clicked), NULL);
   */
 
-  g_signal_connect (G_OBJECT (slider_window), "button-press-event", G_CALLBACK (slider_clicked), NULL);
+  g_signal_connect (slider_window, "button-press-event",
+		    G_CALLBACK (slider_clicked), NULL);
 
-  gtk_widget_add_events (slider_window, GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK);
+  gtk_widget_add_events (slider_window,
+		         GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK);
 
 
 #if 0
