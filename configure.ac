@@ -1,8 +1,5 @@
-#                                               -*- Autoconf -*-
-# Process this file with autoconf to produce a configure script.
-
 AC_PREREQ(2.53)
-AC_INIT([mb-applet-volume], 0.1, [mallum@handhelds.org])
+AC_INIT([mb-applet-volume], 0.2, [mallum@handhelds.org])
 AC_CONFIG_SRCDIR([volume-applet.c])
 
 AM_INIT_AUTOMAKE()

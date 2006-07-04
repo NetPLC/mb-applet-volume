@@ -1,0 +1,5 @@
+2006-07-04  Matthew Allum  <mallum@openedhand.com>
+
+	* configure.ac:
+        Bump up version to 0.2 with ebassis GTK fixes
+
